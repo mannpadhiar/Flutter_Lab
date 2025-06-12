@@ -1,6 +1,8 @@
 import '../models/prodect_model.dart';
+import 'package:get/get.dart';
 
-class ECommerceController{
+
+class ECommerceController extends GetxController{
   List<Product> products = [
     Product(
       name: 'Bluetooth Earphones',
@@ -53,7 +55,7 @@ class ECommerceController{
       description: 'Portable speaker with powerful bass and mic support.',
     ),
   ];
-  List<Product> cartItems = [];
+  RxList cartItems = <Product>[].obs;
 
   void addProduct(Product product){
     products.add(product);
@@ -61,7 +63,7 @@ class ECommerceController{
   }
 
   void addFavouriteProduct(int index,bool flag){
-    products[index].isFav = flag;
+    products[index].isFav.value = flag;
   }
 
   void addToCart(Product product){

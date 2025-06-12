@@ -13,7 +13,8 @@ class LocalPersonController{
       onCreate: (db, version) {
         db.execute('''
          CREATE TABLE student(
-          int id 
+          int id ,
+          
          )
          ''');
       },

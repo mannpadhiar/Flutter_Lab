@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sem_5/E-commerce/controller/e_commerce_controller.dart';
+import 'package:get/get.dart';
+
 
 class EcommerceView extends StatefulWidget {
   const EcommerceView({super.key});
@@ -10,7 +12,8 @@ class EcommerceView extends StatefulWidget {
 
 class _EcommerceViewState extends State<EcommerceView>
     with TickerProviderStateMixin {
-  final ECommerceController _controller = ECommerceController();
+
+  final _controller = Get.put(ECommerceController());
   int currIndex = 0;
   late TabController _tabController;
 
@@ -82,11 +85,13 @@ class _EcommerceViewState extends State<EcommerceView>
                                 color: Color(0xff00720f),
                               ),
                               SizedBox(width: 3),
-                              Text(
-                                _controller.cartItems.length.toString(),
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                              Obx(
+                                () => Text(
+                                  _controller.cartItems.length.toString(),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],
@@ -203,7 +208,6 @@ class _EcommerceViewState extends State<EcommerceView>
                                                       _controller.addToCart(
                                                         _controller.products[index],
                                                       );
-                                                      setState(() {});
                                                     },
                                                     icon: CircleAvatar(
                                                       radius: 18,
@@ -217,7 +221,6 @@ class _EcommerceViewState extends State<EcommerceView>
                                             ],
                                           ),
                                         ),
-
                                         // Text(_controller.products[index].description.substring(0,4))
                                       ],
                                     ),
@@ -226,10 +229,11 @@ class _EcommerceViewState extends State<EcommerceView>
                                       left: 8,
                                       child: CircleAvatar(
                                         radius: 18,
-                                        child: IconButton(onPressed: () {
-                                          _controller.addFavouriteProduct(index, !_controller.products[index].isFav);
-                                          setState(() {});
-                                        }, icon: Icon(_controller.products[index].isFav?Icons.favorite:Icons.favorite_outline_rounded,size: 20,color: Colors.deepPurple,),)
+                                        child: Obx(
+                                          () => IconButton(onPressed: () {
+                                            _controller.addFavouriteProduct(index, !_controller.products[index].isFav.value);
+                                          }, icon: Icon(_controller.products[index].isFav.value?Icons.favorite:Icons.favorite_outline_rounded,size: 20,color: Colors.deepPurple,),),
+                                        )
                                       ),
                                     )
                                   ],
@@ -295,11 +299,13 @@ class _EcommerceViewState extends State<EcommerceView>
                                 color: Color(0xff00720f),
                               ),
                               SizedBox(width: 3),
-                              Text(
-                                _controller.cartItems.length.toString(),
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                              Obx(
+                                () =>  Text(
+                                  _controller.cartItems.length.toString(),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],
@@ -309,123 +315,125 @@ class _EcommerceViewState extends State<EcommerceView>
                     ),
                   ),
                 ),
-                _controller.cartItems.isEmpty?
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add_shopping_cart_outlined,size: 80,color: Colors.orange[200],),
-                      Text('Cart is Empty',style: TextStyle(color: Colors.black26,fontWeight: FontWeight.bold),),
-                    ],
-                  ),
-                )
-                    :Expanded(
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: 300,
+                Obx(
+                  () =>  _controller.cartItems.isEmpty?
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add_shopping_cart_outlined,size: 80,color: Colors.orange[200],),
+                        Text('Cart is Empty',style: TextStyle(color: Colors.black26,fontWeight: FontWeight.bold),),
+                      ],
                     ),
-                    itemCount: _controller.cartItems.length,
-                    itemBuilder: (context, index) => Card(
-                      color: Colors.white,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [Color(0xFFFEFFE0), Colors.white],
-                          ),
-                          borderRadius: BorderRadius.circular(12),
+                  )
+                      :Expanded(
+                    child: Obx(
+                      () =>  GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisExtent: 300,
                         ),
-                        child: Stack(
-                            children: [
-                              Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Image.asset('lib/assets/images/image1.png',scale: 3,)
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                        itemCount: _controller.cartItems.length,
+                        itemBuilder: (context, index) => Card(
+                          color: Colors.white,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [Color(0xFFFEFFE0), Colors.white],
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Stack(
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.end,
+                                      MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
-                                        Text(
-                                          _controller.cartItems[index].name,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.currency_rupee,
-                                                  size: 16,
-                                                  color: Colors.green,
-                                                ),
-                                                Text(
-                                                  _controller
-                                                      .cartItems[index]
-                                                      .price
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                    color: Colors.green,
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    backgroundColor: Colors.blue,
-                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                                                ),
-                                                onPressed: () {
-
-                                                },
-                                                child: Text('Buy Now',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                        Image.asset('lib/assets/images/image1.png',scale: 3,)
                                       ],
                                     ),
-                                  ),
-                                  // Text(_controller.products[index].description.substring(0,4))
-                                ],
-                              ),
-                              Positioned(
-                                right: 2,
-                                top: 2,
-                                child: IconButton(
-                                  onPressed: () {
-                                    _controller.removeToCart(_controller.cartItems[index]);
-                                    setState(() {});
-                                  },
-                                  icon: Icon(Icons.close,size: 24,),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            _controller.cartItems[index].name,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.currency_rupee,
+                                                    size: 16,
+                                                    color: Colors.green,
+                                                  ),
+                                                  Text(
+                                                    _controller
+                                                        .cartItems[index]
+                                                        .price
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.green,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      backgroundColor: Colors.blue,
+                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+                                                  ),
+                                                  onPressed: () {
+
+                                                  },
+                                                  child: Text('Buy Now',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    // Text(_controller.products[index].description.substring(0,4))
+                                  ],
                                 ),
-                              ),
-                            ]
+                                Positioned(
+                                  right: 2,
+                                  top: 2,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      _controller.removeToCart(_controller.cartItems[index]);
+                                    },
+                                    icon: Icon(Icons.close,size: 24,),
+                                  ),
+                                ),
+                              ]
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -447,7 +455,6 @@ class _EcommerceViewState extends State<EcommerceView>
             //     backgroundColor: Colors.white,
             //     onTap: (value) {
             //       currIndex = value;
-            //       setState(() {});
             //     },
             //     currentIndex: currIndex,
             //     items: [
