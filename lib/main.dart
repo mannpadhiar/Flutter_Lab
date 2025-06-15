@@ -5,6 +5,7 @@ import 'package:sem_5/views/log_in_view.dart';
 
 import 'E-commerce/views/e_commerce_view.dart';
 import 'lab-3/views/crud_person_view.dart';
+import 'local_database/view/local_person_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,12 +18,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(),
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: EcommerceView(),
+      home: LocalPersonView(),
     );
   }
 }

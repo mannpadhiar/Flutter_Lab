@@ -4,36 +4,54 @@ import 'package:sqflite/sqflite.dart';
 
 
 class LocalPersonController{
-  final List<Person> _persons = [];
-  late Database db;
+  List<Map<String,dynamic>> _persons = [];
+  late Database _database;
 
-  void initDataBase() async{
-    var db = await openDatabase(
+  Future<void> initDataBase() async{
+    _database = await openDatabase(
       path.join(await getDatabasesPath(),'persons.db'),
+      version: 1,
       onCreate: (db, version) {
         db.execute('''
          CREATE TABLE student(
-          int id ,
-          
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT   
          )
          ''');
       },
     );
   }
 
-  get getPersons => _persons;
+  get persons => _persons;
 
-  void addPerson(Person person){
-    _persons.add(person);
-    print('Person added');
+  Future<List<Map<String,dynamic>>> fetchUsers() async{
+    final List<Map<String, dynamic>> tempUser = await _database.query('student');
+    _persons = tempUser;
+    return tempUser;
   }
 
-  void deleteUser(Person person){
-    _persons.removeWhere((element) => element.name == person.name,);
+  Future<void> addLocalPerson(String name) async{
+    await _database.insert('student', {'name':name});
+    await fetchUsers();
+    print(_persons);
   }
 
-  void editPerson(Person oldPerson,Person newPerson){
-    int index = _persons.indexWhere((element) => element.name == oldPerson.name,);
-    _persons[index] = newPerson;
+  Future<void> deleteUser(int id) async{
+    await _database.delete(
+      'student',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    await fetchUsers();
+  }
+
+  Future<void> editPerson(int id,String newName) async{
+    await _database.update(
+      'student',
+      {'name' : newName},
+      where: 'id = ?',
+      whereArgs:  [id],
+    );
+    fetchUsers();
   }
 }
