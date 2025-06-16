@@ -14,27 +14,36 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Profile Card'),),
+      appBar: AppBar(title: Text('Profile Card')),
       body: Center(
         child: Container(
           height: 200,
           width: 400,
           decoration: BoxDecoration(
-            color: Colors.blueAccent,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF25C263), Color(0xFF0575E6)],
+            ),
             borderRadius: BorderRadius.circular(12),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX:10,
-                sigmaY:10,
-              ),
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: CircleAvatar(child: Icon(Icons.person,size: 35,),radius: 35,),
+                    padding: EdgeInsets.all(12),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 70,horizontal: 30),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white54,width: 4),
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0x4afdfdfd),
+                      ),
+                      child: Icon(Icons.personal_injury,size: 35,),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -42,11 +51,128 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Name : ${UserProfileController.user.name!}'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(6),
+                                child: Icon(Icons.person, color: Colors.white),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: Color(0x4a000000),
+                                  border: Border.all(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Name',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  UserProfileController.user.name!,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                         Divider(),
-                        Text('Email : ${UserProfileController.user.email!}'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(6),
+                                child: Icon(Icons.mail, color: Colors.white),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: Color(0x4a000000),
+                                  border: Border.all(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Email',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  UserProfileController.user.email!,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                         Divider(),
-                        Text('Number : ${UserProfileController.user.number!}'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(6),
+                                child: Icon(Icons.numbers, color: Colors.white),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: Color(0x4a000000),
+                                  border: Border.all(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Number',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  UserProfileController.user.number!,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

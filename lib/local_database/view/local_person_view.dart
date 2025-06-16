@@ -13,6 +13,9 @@ class _LocalPersonViewState extends State<LocalPersonView> {
   TextEditingController _name = TextEditingController();
   final LocalPersonController _controller = LocalPersonController();
 
+  bool isEdit = false;
+  int ediIndex = -1;
+
   List<Map<String, dynamic>> persons = [];
 
   Future<void> fetchUserData() async {
@@ -53,11 +56,17 @@ class _LocalPersonViewState extends State<LocalPersonView> {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async {
-                _controller.addLocalPerson(_name.text);
+                if(isEdit){
+                  _controller.editPerson(_controller.persons[ediIndex]['id'], _name.text);
+                  isEdit = false;
+                }else{
+                  _controller.addLocalPerson(_name.text);
+                }
                 await fetchUserData();
                 setState(() {});
+                _name.clear();
               },
-              child: Text('Add'),
+              child: Text(isEdit?'Edit':'Add'),
             ),
             SizedBox(height: 20),
             Expanded(
@@ -66,6 +75,11 @@ class _LocalPersonViewState extends State<LocalPersonView> {
                 itemBuilder:
                     (context, index) => ListTile(
                       title: Text(_controller.persons[index]['name']),
+                      leading: IconButton(onPressed: () {
+                        ediIndex = index;
+                        isEdit = true;
+                        setState(() {});
+                      }, icon: Icon(Icons.edit)),
                       trailing: IconButton(onPressed: () async{
                         await _controller.deleteUser(_controller.persons[index]['id']);
                         setState(() {});
