@@ -30,7 +30,7 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 10),
               child: Row(
                 children: [
                   Padding(
@@ -63,9 +63,9 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
                                 padding: EdgeInsets.all(6),
                                 child: Icon(Icons.person, color: Colors.white),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
+                                  borderRadius: BorderRadius.circular(12),
                                   color: Color(0x4a000000),
-                                  border: Border.all(color: Colors.white),
+                                  border: Border.all(color: Colors.white54,width: 2),
                                 ),
                               ),
                             ),
@@ -104,9 +104,9 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
                                 padding: EdgeInsets.all(6),
                                 child: Icon(Icons.mail, color: Colors.white),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
+                                  borderRadius: BorderRadius.circular(12),
                                   color: Color(0x4a000000),
-                                  border: Border.all(color: Colors.white),
+                                  border: Border.all(color: Colors.white54,width: 2),
                                 ),
                               ),
                             ),
@@ -145,9 +145,9 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
                                 padding: EdgeInsets.all(6),
                                 child: Icon(Icons.numbers, color: Colors.white),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
+                                  borderRadius: BorderRadius.circular(12),
                                   color: Color(0x4a000000),
-                                  border: Border.all(color: Colors.white),
+                                  border: Border.all(color: Colors.white54,width: 2),
                                 ),
                               ),
                             ),
