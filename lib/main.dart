@@ -13,6 +13,10 @@ import 'lab-4/alert_ dialog_example.dart';
 import 'lab-5/Log_in_page_demo.dart';
 import 'lab-5/login_middleware.dart';
 import 'lab-5/navigation_example.dart';
+import 'lab-6/RxBoolExample.dart';
+import 'lab-6/non_reactive.dart';
+import 'lab-6/text_field_ractive.dart';
+import 'lab-6/time_print.dart';
 import 'local_database/view/local_person_view.dart';
 
 void main() {
@@ -31,13 +35,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      // home: NavigationExample(),
-      getPages: [
-        GetPage(name: '/', page: () => NavigationExample(),),
-        GetPage(name: '/login', page: () => LogInPageDemo(),),
-        GetPage(name: '/tempExample', page: () => TempExample(),middlewares: [LoginMiddleware()]),
-      ],
-      initialRoute: '/',
+      home: Rxboolexample(),
+      // getPages: [
+      //   GetPage(name: '/', page: () => NavigationExample(),),
+      //   GetPage(name: '/login', page: () => LogInPageDemo(),),
+      //   GetPage(name: '/tempExample', page: () => TempExample(),middlewares: [LoginMiddleware()]),
+      // ],
+      // initialRoute: '/',
     );
   }
 }
