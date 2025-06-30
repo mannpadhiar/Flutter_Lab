@@ -17,9 +17,12 @@ import 'lab-6/RxBoolExample.dart';
 import 'lab-6/non_reactive.dart';
 import 'lab-6/text_field_ractive.dart';
 import 'lab-6/time_print.dart';
+import 'lab-7/RxListExample.dart';
+import 'lab-7/list_controller.dart';
 import 'local_database/view/local_person_view.dart';
 
 void main() {
+  Get.put(ListController());
   runApp(const MyApp());
 }
 
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Rxboolexample(),
+      home: Rxlistexample(),
       // getPages: [
       //   GetPage(name: '/', page: () => NavigationExample(),),
       //   GetPage(name: '/login', page: () => LogInPageDemo(),),
