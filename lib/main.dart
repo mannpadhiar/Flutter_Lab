@@ -5,6 +5,8 @@ import 'package:sem_5/lab-5/temp_example.dart';
 import 'package:sem_5/profile/view/profile_home_page.dart';
 import 'package:sem_5/profile/view/profile_view.dart';
 import 'package:sem_5/temp.dart';
+import 'package:sem_5/tempppp/controller.dart';
+import 'package:sem_5/tempppp/view.dart';
 import 'package:sem_5/views/log_in_view.dart';
 
 import 'E-commerce/views/e_commerce_view.dart';
@@ -23,6 +25,7 @@ import 'local_database/view/local_person_view.dart';
 
 void main() {
   Get.put(ListController());
+  Get.put(StudentDatabaseController());
   runApp(const MyApp());
 }
 
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Rxlistexample(),
+      home: StudentCrudView(),
       // getPages: [
       //   GetPage(name: '/', page: () => NavigationExample(),),
       //   GetPage(name: '/login', page: () => LogInPageDemo(),),
