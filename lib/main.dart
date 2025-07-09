@@ -8,9 +8,9 @@ import 'package:sem_5/temp.dart';
 import 'package:sem_5/tempppp/controller.dart';
 import 'package:sem_5/tempppp/view.dart';
 import 'package:sem_5/views/log_in_view.dart';
-
 import 'E-commerce/views/e_commerce_view.dart';
 import 'lab-10/user_local_databse_view.dart';
+import 'lab-11/user_api_view.dart';
 import 'lab-3/views/crud_person_view.dart';
 import 'lab-4/alert_ dialog_example.dart';
 import 'lab-5/Log_in_page_demo.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: UserLocalDatabseView(),
+      home: UserApiView(),
       // getPages: [
       //   GetPage(name: '/', page: () => NavigationExample(),),
       //   GetPage(name: '/login', page: () => LogInPageDemo(),),
