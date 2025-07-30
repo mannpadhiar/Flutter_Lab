@@ -38,6 +38,8 @@ dependencies:
   get: ^4.7.2
   shadcn_ui:
   http:
+  custom_package:
+    path: ..\custom_package
 
 dev_dependencies:
   flutter_test:

@@ -10,9 +10,11 @@ class GetConnectExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('App Bar'),),
-      body: FutureBuilder(future: _users.fetchUsers(), builder: (context, snapshot) {
+      body: Column(
+        children: [
 
-      },)
+        ],
+      )
     );
   }
 }
