@@ -33,27 +33,23 @@ class _CamaraPermissionState extends State<CamaraPermission> {
             ElevatedButton(onPressed: () async{
               final res = await Permission.manageExternalStorage.request();
               if(res.isGranted){
-                Get.snackbar('Permission Granted','ayyyyoooo!!!',backgroundColor: Colors.green);
+                Get.snackbar('Permission Granted','Welcome',backgroundColor: Colors.green);
               }else{
-                Get.snackbar('Permission Denied','naiiiiiiiiii!!!',backgroundColor: Colors.red);
+                Get.snackbar('Permission Denied','your permission denied',backgroundColor: Colors.red);
               }
             }, child: Text('Storage Permission')),
             SizedBox(height: 20,),
             ElevatedButton(onPressed: () async{
 
-              //for app we have to first check if location is enable in it
               var serviceStatus = await Permission.location.serviceStatus;
               if(serviceStatus.isEnabled){
                 var status = await Permission.location.request();
                 if(status == PermissionStatus.granted){
-                  Get.snackbar('Permission Granted','ayyyyoooo!!!',backgroundColor: Colors.green);
+                  Get.snackbar('Permission Granted','Welcome!!',backgroundColor: Colors.green);
                 }
               }
-              // if(status == PermissionStatus.granted){
-              //   Get.snackbar('Permission Granted','ayyyyoooo!!!',backgroundColor: Colors.green);
-              // }
               else{
-                Get.snackbar('Permission Denied','naiiiiiiiiii!!!',backgroundColor: Colors.red);
+                Get.snackbar('Permission Denied','your permission denied',backgroundColor: Colors.red);
               }
             }, child: Text('Storage Permission')),
           ],

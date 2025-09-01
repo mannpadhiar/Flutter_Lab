@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class ListController extends GetxController{
-    RxList list = <Map<String,dynamic>>[].obs;
+  RxList list = <Map<String,dynamic>>[].obs;
   RxBool isEdit = false.obs;
 
   void addUser(String user){

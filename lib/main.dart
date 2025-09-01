@@ -14,11 +14,12 @@ import 'lab-11/user_api_view.dart';
 import 'lab-14/custom_package_example.dart';
 import 'lab-15/camera_permission.dart';
 import 'lab-15/multiple_permission.dart';
+import 'lab-16/file_example.dart';
 import 'lab-3/views/crud_person_view.dart';
 import 'lab-4/alert_ dialog_example.dart';
 import 'lab-5/Log_in_page_demo.dart';
 import 'lab-5/login_middleware.dart';
-import 'lab-5/navigation_example.dart';
+import 'lab-5/navigation_example_named.dart';
 import 'lab-6/RxBoolExample.dart';
 import 'lab-6/non_reactive.dart';
 import 'lab-6/text_field_ractive.dart';
@@ -26,7 +27,7 @@ import 'lab-6/time_print.dart';
 import 'lab-7/RxListExample.dart';
 import 'lab-7/list_controller.dart';
 import 'lab-8/snackBarException.dart';
-import 'local_database/view/local_person_view.dart';
+import 'map/google_location.dart';
 
 void main() {
   Get.put(ListController());
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: CamaraPermission(),
+      home: FileExample(),
       // getPages: [
       //   GetPage(name: '/', page: () => NavigationExample(),),
       //   GetPage(name: '/login', page: () => LogInPageDemo(),),

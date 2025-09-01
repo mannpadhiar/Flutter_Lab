@@ -51,61 +51,13 @@ class AlertDialogExample extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text('Show Snack Bar'),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Get.snackbar(
-                  "Snack bar showed",
-                  'working complitly fine',
-                  icon: Icon(Icons.account_balance),
-                  shouldIconPulse: true,
-                  snackPosition: SnackPosition.BOTTOM,
-                  backgroundGradient: LinearGradient(
-                    colors: [Color(0xFF25C263), Color(0xFF0575E6)],
-                  ),
-                );
-              },
-              child: Text('Click'),
-            ),
+
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text('Show Bottom sheet'),
             ),
-            ElevatedButton(
-              onPressed: () async{
-                Get.bottomSheet(
-                  barrierColor: Colors.transparent,
-                  enterBottomSheetDuration: Duration(milliseconds: 200),
-                  exitBottomSheetDuration: Duration(milliseconds: 200),
-                  isDismissible: true,
-                  backgroundColor: Colors.black38,
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          gradient: LinearGradient(colors: [
-                            Color(0xdecebeb),
-                            Color(0x22f8f8f8)
-                          ])
-                        ),
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder:
-                              (context, index) =>
-                                  ListTile(title: Text('Hello $index')),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-                // await Future.delayed(Duration(milliseconds: 300));
-                // Get.back();
-              },
-              child: Text('Click'),
-            ),
+
           ],
         ),
       ),

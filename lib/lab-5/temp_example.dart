@@ -13,7 +13,6 @@ class TempExample extends StatelessWidget {
         children: [
           Center(child: Text('You are at Navigation')),
           SizedBox(height: 20,),
-          // ElevatedButton(onPressed: () => Get.back(), child: Text('BACK')),
           Center(child: ElevatedButton(onPressed: () => Get.back(), child: Text('BACK'))),
           SizedBox(height: 20,),
           Text('hello'),

@@ -26,8 +26,8 @@ class _LocalPersonViewState extends State<LocalPersonView> {
   }
 
   void _init() async {
-    await _controller.initDataBase(); // Wait for DB
-    await fetchUserData(); // Then fetch
+    await _controller.initDataBase();
+    await fetchUserData();
   }
 
   @override

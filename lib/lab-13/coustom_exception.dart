@@ -2,12 +2,17 @@ class CustomException implements Exception{
   String exc;
 
   CustomException(this.exc);
+
+  @override
+  String toString() {
+    return "CustomException: $exc";
+  }
 }
 
 void main(){
   try{
-    throw CustomException('custom Exception!!').exc;
+    throw CustomException('custom Exception!!');
   }catch(e){
-    print('Exc : ${e.toString()}');
+    print(e);
   }
 }

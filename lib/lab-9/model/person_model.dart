@@ -1,7 +1,7 @@
-class Person{
+class Student{
   String name;
 
-  Person({
+  Student({
     required this.name,
   });
 }

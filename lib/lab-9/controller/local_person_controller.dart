@@ -9,7 +9,7 @@ class LocalPersonController{
 
   Future<void> initDataBase() async{
     _database = await openDatabase(
-      path.join(await getDatabasesPath(),'persons.db'),
+      path.join(await getDatabasesPath(),'studentDB.db'),
       version: 1,
       onCreate: (db, version) {
         db.execute('''
