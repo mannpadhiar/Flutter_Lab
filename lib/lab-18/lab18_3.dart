@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(DynamicFontApp());
-}
-
-class DynamicFontApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DynamicFontPage(),
-    );
-  }
-}
-
 class DynamicFontPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 
-    // Set font size dynamically
     double fontSize;
     if (width < 400) {
-      fontSize = 16; // Small screen
+      fontSize = 16;
     } else if (width < 800) {
-      fontSize = 24; // Medium screen
+      fontSize = 24;
     } else {
-      fontSize = 32; // Large screen
+      fontSize = 32;
     }
 
     return Scaffold(

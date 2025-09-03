@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(ResponsiveWidgetApp());
-}
-
-class ResponsiveWidgetApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ResponsiveWidgetPage(),
-    );
-  }
-}
-
 class ResponsiveWidgetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

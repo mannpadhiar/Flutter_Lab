@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(ResponsiveGridApp());
-}
-
-class ResponsiveGridApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ResponsiveGridPage(),
-    );
-  }
-}
-
 class ResponsiveGridPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 
-    // Decide number of columns based on screen width
     int crossAxisCount;
     if (width < 600) {
-      crossAxisCount = 2; // Mobile
+      crossAxisCount = 2;
     } else if (width < 900) {
-      crossAxisCount = 3; // Tablet
+      crossAxisCount = 3;
     } else {
-      crossAxisCount = 5; // Web/Desktop
+      crossAxisCount = 5;
     }
 
     return Scaffold(
