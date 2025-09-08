@@ -20,13 +20,46 @@ class _GoogleLoginExampleState extends State<GoogleLoginExample> {
   }
 
   void getUsers() async {
+    // showDialog(context: context, builder: (context) => Center(child: CircularProgressIndicator()),);
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('users').get();
+    users.clear();
+    for (var doc in querySnapshot.docs) {
+      users.add(doc);
+      print(doc.id);
+    }
+
+    // Navigator.pop(context);
+  }
+
+  void deleteData(String id) async {
+    await FirebaseFirestore.instance.collection('users').doc(id).delete();
+    getUsers();
+  }
+
+  void addData(String name, String email) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'email': email,
+    });
+    getUsers();
+  }
+
+  void updateData(String id, String name, String email) async {
+    await FirebaseFirestore.instance.collection('users').doc(id).update({
+      'name': name,
+      'email': email,
+    });
+    getUsers();
   }
 
   TextEditingController email = TextEditingController();
   TextEditingController name = TextEditingController();
-  RxList<Map<String, dynamic>> users = <Map<String, dynamic>>[].obs;
+  RxList users = [].obs;
+
+  RxBool isEdit = false.obs;
+
+  String editId = '';
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +71,20 @@ class _GoogleLoginExampleState extends State<GoogleLoginExample> {
           SizedBox(height: 10),
           TextFormField(controller: email),
           SizedBox(height: 20),
-          ElevatedButton(onPressed: () async {}, child: Text('Add User')),
+          Obx(
+            () =>  ElevatedButton(
+              onPressed: () async {
+                if(isEdit.value){
+                  updateData(editId, name.text, email.text);
+                  isEdit.value = false;
+                }
+                else{
+                  addData(name.text, email.text);
+                }
+              },
+              child: Text(isEdit.value?'Edit user':'Add User'),
+            ),
+          ),
           SizedBox(height: 10),
           ElevatedButton(
             onPressed: () async {
@@ -58,8 +104,37 @@ class _GoogleLoginExampleState extends State<GoogleLoginExample> {
           Expanded(
             child: Obx(
               () => ListView.builder(
-                itemBuilder:
-                    (context, index) => ListTile(title: users[index]['name']),
+                itemCount: users.length,
+                itemBuilder: (context, index) {
+                  var user = users[index];
+                  return ListTile(
+                    title: Text(user.data()['name']),
+                    subtitle: Text(user.data()['email']),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            isEdit.value = !isEdit.value;
+                            editId = user.id;
+                            name.text = user.data()['name'];
+                            email.text = user.data()['email'];
+                          },
+                          icon: Icon(Icons.edit_outlined, color: Colors.green),
+                        ),
+
+                        IconButton(
+                          icon: Icon(Icons.delete_outline),
+                          color: Colors.red,
+                          onPressed: () {
+                            print(user.id);
+                            deleteData(user.id);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ),
