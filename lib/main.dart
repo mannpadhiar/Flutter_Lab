@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:sem_5/firebase_options.dart';
 import 'package:sem_5/lab-5/temp_example.dart';
 import 'package:sem_5/profile/view/profile_home_page.dart';
 import 'package:sem_5/profile/view/profile_view.dart';
@@ -15,6 +18,7 @@ import 'lab-14/custom_package_example.dart';
 import 'lab-15/camera_permission.dart';
 import 'lab-15/multiple_permission.dart';
 import 'lab-16/file_example.dart';
+import 'lab-19/google_login_exmple.dart';
 import 'lab-3/views/crud_person_view.dart';
 import 'lab-4/alert_ dialog_example.dart';
 import 'lab-5/Log_in_page_demo.dart';
@@ -30,8 +34,11 @@ import 'lab-8/snackBarException.dart';
 import 'map/google_location.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Get.put(ListController());
   Get.put(StudentDatabaseController());
+
   runApp(const MyApp());
 }
 
@@ -47,7 +54,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: FileExample(),
+      home: GoogleLoginExample(),
       // getPages: [
       //   GetPage(name: '/', page: () => NavigationExample(),),
       //   GetPage(name: '/login', page: () => LogInPageDemo(),),
